@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'player.dart';
 
 class Items extends StatelessWidget {
-  Items({Key key, this.keyword}) : super(key: key);
+  Items({Key key, this.type, this.keyword}) : super(key: key);
 
+  final String type;
   final String keyword;
 
   @override
   Widget build(BuildContext context) {
-    return ItemsPage(
-      keyword: keyword,
+    return Material(
+      child: ItemsPage(
+        type: type,
+        keyword: keyword,
+      ),
     );
   }
 }
 
 class ItemsPage extends StatefulWidget {
-  ItemsPage({Key key, this.keyword}) : super(key: key);
+  ItemsPage({Key key, this.type, this.keyword}) : super(key: key);
 
+  final String type;
   final String keyword;
 
   @override
@@ -27,14 +34,28 @@ class ItemsPage extends StatefulWidget {
 class _ItemsPageState extends State<ItemsPage> {
   List _list = List();
 
-  ScrollController _scrollController;
+  // 页码
+  int _page = 1;
+
+  // 是否正在请求
+  bool _request = false;
+
+  // 是否为最后一页
+  bool _isLastPage = false;
+
+  ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
 
-    setState(() {
-      _list = _getList(widget.keyword);
+    _getList(widget.type, widget.keyword);
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        _getList(widget.type, widget.keyword);
+      }
     });
   }
 
@@ -42,42 +63,99 @@ class _ItemsPageState extends State<ItemsPage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        leading: CupertinoButton(
+        /* leading: CupertinoButton(
           padding: EdgeInsets.all(0.0),
-          child: Icon(Icons.keyboard_arrow_down),
+          child: Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
           },
-        ),
+        ), */
         middle: const Text("搜索列表"),
       ),
-      child: ListView.builder(
-          controller: _scrollController,
-          itemCount: _list.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(_list[index]['name']),
-              onTap: () {},
-            );
-          }),
+      child: ListView.separated(
+        separatorBuilder: (context, index) => Divider(height: .0),
+        controller: _scrollController,
+        itemCount: _list == null ? 1 : _list.length + 1,
+        itemBuilder: _render,
+      ),
     );
   }
 
-  _getList(String keyword) async {
-    try {
-      Response response;
-      response = await Dio().get("https://api.wispx.cn/music/search", queryParameters: {'keywords': keyword});
-      print(response.data);
-      return response.data;
-    } catch (e) {
-      print(e);
-      return [];
+  Widget _getMoreWidget() {
+    if (_isLastPage) {
+      return Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(16.0),
+        child: Text(
+          "没有更多了",
+          style: TextStyle(color: Colors.grey),
+        ),
+      );
+    } else {
+      return Container(
+        padding: const EdgeInsets.all(16.0),
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: 24.0,
+          height: 24.0,
+          child: CircularProgressIndicator(strokeWidth: 2.0),
+        ),
+      );
     }
   }
 
-  @override
-  dispose() {
-    _scrollController.dispose();
-    super.dispose();
+  // 渲染列表数据
+  Widget _render(BuildContext context, int index) {
+    if (index < _list.length) {
+      return ListTile(
+        title: Text("${_list[index]['name']}"),
+        trailing: Text('${_list[index]['artist'][0]}'),
+        onTap: () {
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => Player(),
+            ),
+          );
+        },
+      );
+    }
+
+    return _getMoreWidget();
+  }
+
+  Future<Null> _getList(String type, String keyword) async {
+    if (!this.mounted) return;
+    if (false == _request && false == _isLastPage || _list.length == 0) {
+      setState(() {
+        _request = true;
+        _isLastPage = false;
+      });
+    }
+    try {
+      await Dio().get(
+        "https://api.wispx.cn/music/search",
+        queryParameters: {
+          'type': type,
+          'keywords': keyword,
+          'page': _page,
+          'limit': 30,
+        },
+      ).then((response) {
+        if (response.statusCode == 200) {
+          var data = json.decode(response.data);
+          if (data.length > 0) {
+            setState(() {
+              _list.addAll(data);
+              _page++;
+            });
+          } else {
+            setState(() {
+              _isLastPage = true;
+            });
+          }
+        }
+      });
+    } catch (e) {}
   }
 }

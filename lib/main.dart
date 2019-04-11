@@ -189,12 +189,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   onEditingComplete: () {
-                    // TODO 打开新窗口
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
                         fullscreenDialog: true,
                         builder: (context) => Items(
+                              type: _type,
                               keyword: _textController.text,
                             ),
                       ),
