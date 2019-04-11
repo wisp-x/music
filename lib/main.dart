@@ -184,11 +184,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(50.0),
-                    /* border: Border.all(
-                      color: Colors.blue,
-                      style: BorderStyle.solid,
-                      width: 2.0,
-                    ), */
                     boxShadow: const [
                       BoxShadow(blurRadius: 20.0, color: Colors.black26),
                     ],
