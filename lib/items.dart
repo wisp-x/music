@@ -25,7 +25,7 @@ class ItemsPage extends StatefulWidget {
 }
 
 class _ItemsPageState extends State<ItemsPage> {
-  List<Map> _list = List<Map>();
+  List _list = List();
 
   ScrollController _scrollController;
 
@@ -33,7 +33,9 @@ class _ItemsPageState extends State<ItemsPage> {
   void initState() {
     super.initState();
 
-    _list = _getList(widget.keyword);
+    setState(() {
+      _list = _getList(widget.keyword);
+    });
   }
 
   @override
@@ -65,6 +67,7 @@ class _ItemsPageState extends State<ItemsPage> {
     try {
       Response response;
       response = await Dio().get("https://api.wispx.cn/music/search", queryParameters: {'keywords': keyword});
+      print(response.data);
       return response.data;
     } catch (e) {
       print(e);
