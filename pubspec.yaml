@@ -27,6 +27,9 @@ dependencies:
   # https://pub.dartlang.org/packages/audioplayers
   audioplayers: ^0.10.1
 
+  # https://pub.dartlang.org/packages/dio
+  dio: ^2.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
