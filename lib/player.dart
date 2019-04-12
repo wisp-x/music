@@ -14,6 +14,12 @@ class MyPlayerPage extends StatefulWidget {
 }
 
 class _MyPlayerPageState extends State<MyPlayerPage> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

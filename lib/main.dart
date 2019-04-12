@@ -43,13 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.all(0.0),
           child: const Text('关于'),
           onPressed: () {
-            showDialog(
+            showCupertinoDialog(
               context: context,
-              barrierDismissible: false,
               builder: (context) {
                 return CupertinoAlertDialog(
                   title: const Text('关于本软件'),
-                  content: const Text('巴拉巴拉巴拉吧'),
+                  content: const Text('动词打次动~\t动词打次动~\t动词打次动~\t动词打次动~\t动词打次动~\t动词打次动~\t'),
                   actions: <Widget>[
                     CupertinoDialogAction(
                       child: const Text('知道了'),
