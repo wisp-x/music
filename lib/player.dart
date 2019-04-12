@@ -18,6 +18,13 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        leading: CupertinoButton(
+          padding: EdgeInsets.all(0.0),
+          child: const Text('Back'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         middle: const Text("Player"),
         /* trailing: CupertinoButton(
           padding: EdgeInsets.all(0.0),

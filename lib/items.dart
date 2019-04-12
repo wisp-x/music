@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
+import 'util.dart';
 import 'player.dart';
 
 class Items extends StatelessWidget {
@@ -110,13 +111,8 @@ class _ItemsPageState extends State<ItemsPage> {
       return ListTile(
         title: Text("${_list[index]['name']}"),
         trailing: Text('${_list[index]['artist'][0]}'),
-        onTap: () {
-          Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => Player(),
-            ),
-          );
+        onTap: () async {
+          await Util.openPage(context, Player());
         },
       );
     }

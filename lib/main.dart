@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'items.dart';
+import 'cupertino_swipe_back_observer.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,6 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Music',
       home: MyHomePage(title: 'Music'),
+      navigatorObservers: <NavigatorObserver>[
+        CupertinoSwipeBackObserver(),
+      ],
     );
   }
 }
