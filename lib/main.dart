@@ -193,16 +193,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   onEditingComplete: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        fullscreenDialog: true,
-                        builder: (context) => Items(
-                              type: _type,
-                              keyword: _textController.text,
-                            ),
-                      ),
-                    );
+                    if (_textController.text != '' &&
+                        _textController.text != null) {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          fullscreenDialog: true,
+                          builder: (context) => Items(
+                                type: _type,
+                                keyword: _textController.text,
+                              ),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),

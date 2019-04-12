@@ -20,12 +20,17 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
       navigationBar: CupertinoNavigationBar(
         leading: CupertinoButton(
           padding: EdgeInsets.all(0.0),
-          child: const Text('Back'),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.arrow_back_ios),
+              Text('Back')
+            ],
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        middle: const Text("Player"),
+        middle: Text("Player"),
         /* trailing: CupertinoButton(
           padding: EdgeInsets.all(0.0),
           child: const Text('返回'),

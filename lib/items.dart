@@ -110,7 +110,10 @@ class _ItemsPageState extends State<ItemsPage> {
   Widget _render(BuildContext context, int index) {
     if (index < _list.length) {
       return ListTile(
-        title: Text("${_list[index]['name']}"),
+        title: Text(
+          "${_list[index]['name']}",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         trailing: Text('${_list[index]['artist'][0]}'),
         onTap: () async {
           await Util.openPage(context, Player());
@@ -130,9 +133,9 @@ class _ItemsPageState extends State<ItemsPage> {
       });
     }
     try {
-      await Dio().get(
+      await Dio().post(
         "https://api.wispx.cn/music/search",
-        queryParameters: {
+        data: {
           'type': type,
           'keywords': keyword,
           'page': _page,
