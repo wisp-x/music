@@ -90,7 +90,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
                 child: ClipOval(
                   child: null == _musicPicUrl && null == _musicResourcesUrl
                       ? Center(
-                          child: CupertinoActivityIndicator(radius: 20.0),
+                          child: CupertinoActivityIndicator(radius: 10.0),
                         )
                       : FadeInImage(
                           placeholder: AssetImage(
