@@ -99,10 +99,8 @@ class _ItemsPageState extends State<ItemsPage> {
       return Container(
         padding: const EdgeInsets.all(16.0),
         alignment: Alignment.center,
-        child: SizedBox(
-          width: 24.0,
-          height: 24.0,
-          child: CircularProgressIndicator(strokeWidth: 2.0),
+        child: CupertinoActivityIndicator(
+          radius: 10.0,
         ),
       );
     }
