@@ -225,7 +225,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
             CupertinoActionSheetAction(
               child: Text('复制歌曲ID'),
               onPressed: () {
-                Util.copyToClipboard(widget.detail['url_id']);
+                Util.copyToClipboard(widget.detail['id']);
                 Navigator.pop(context, 1);
               },
             ),
