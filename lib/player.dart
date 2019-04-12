@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:audioplayers/audioplayers.dart';
+import 'util.dart';
 
 class Player extends StatelessWidget {
   Player({Key key, this.detail}) : super(key: key);
@@ -126,7 +127,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
         _state = true;
       });
     } else {
-      _showAlertDialog(context);
+      _showBackAlertDialog(context);
     }
   }
 
@@ -182,11 +183,11 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
         }
       });
     } catch (e) {
-      _showAlertDialog(context);
+      _showBackAlertDialog(context);
     }
   }
 
-  _showAlertDialog(BuildContext context) async {
+  _showBackAlertDialog(BuildContext context) async {
     final result = await showCupertinoDialog(
       context: context,
       builder: (context) {
@@ -215,35 +216,45 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
         return CupertinoActionSheet(
           title: Text("More"),
           cancelButton: CupertinoActionSheetAction(
+            child: Text("Cancel"),
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("Cancel"),
           ),
           actions: <Widget>[
             CupertinoActionSheetAction(
-              onPressed: () {
-                Navigator.pop(context, 1);
-              },
               child: Text('复制歌曲ID'),
-            ),
-            CupertinoActionSheetAction(
               onPressed: () {
+                Util.copyToClipboard(widget.detail['url_id']);
                 Navigator.pop(context, 1);
               },
+            ),
+            CupertinoActionSheetAction(
               child: Text('复制歌曲名称'),
-            ),
-            CupertinoActionSheetAction(
               onPressed: () {
+                Util.copyToClipboard(widget.detail['name']);
                 Navigator.pop(context, 1);
               },
-              child: Text('复制歌曲链接'),
             ),
             CupertinoActionSheetAction(
+              child: Text('复制歌手名称'),
+              onPressed: () {
+                Util.copyToClipboard(widget.detail['artist'][0]);
+                Navigator.pop(context, 1);
+              },
+            ),
+            CupertinoActionSheetAction(
+              child: Text('复制歌曲链接'),
+              onPressed: () {
+                Util.copyToClipboard(_musicResourcesUrl);
+                Navigator.pop(context, 1);
+              },
+            ),
+            CupertinoActionSheetAction(
+              child: Text('保存歌曲图片'),
               onPressed: () {
                 Navigator.pop(context, 2);
               },
-              child: Text('保存歌曲图片'),
             ),
           ],
         );
