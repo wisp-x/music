@@ -225,35 +225,35 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
             CupertinoActionSheetAction(
               child: Text('复制歌曲ID'),
               onPressed: () {
-                Util.copyToClipboard(widget.detail['id']);
-                Navigator.pop(context, 1);
+                Util.copyToClipboard(widget.detail['id'].toString());
+                Navigator.pop(context);
               },
             ),
             CupertinoActionSheetAction(
               child: Text('复制歌曲名称'),
               onPressed: () {
-                Util.copyToClipboard(widget.detail['name']);
-                Navigator.pop(context, 1);
+                Util.copyToClipboard(widget.detail['name'].toString());
+                Navigator.pop(context);
               },
             ),
             CupertinoActionSheetAction(
               child: Text('复制歌手名称'),
               onPressed: () {
-                Util.copyToClipboard(widget.detail['artist'][0]);
-                Navigator.pop(context, 1);
+                Util.copyToClipboard(widget.detail['artist'][0].toString());
+                Navigator.pop(context);
               },
             ),
             CupertinoActionSheetAction(
               child: Text('复制歌曲链接'),
               onPressed: () {
-                Util.copyToClipboard(_musicResourcesUrl);
-                Navigator.pop(context, 1);
+                Util.copyToClipboard(_musicResourcesUrl.toString());
+                Navigator.pop(context);
               },
             ),
             CupertinoActionSheetAction(
               child: Text('保存歌曲图片'),
               onPressed: () {
-                Navigator.pop(context, 2);
+                Navigator.pop(context);
               },
             ),
           ],
