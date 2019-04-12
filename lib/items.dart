@@ -38,6 +38,9 @@ class _ItemsPageState extends State<ItemsPage> {
   // 页码
   int _page = 1;
 
+  // 每页显示数量
+  int _limit = 30;
+
   // 是否正在请求
   bool _request = false;
 
@@ -135,13 +138,16 @@ class _ItemsPageState extends State<ItemsPage> {
           'type': type,
           'keywords': keyword,
           'page': _page,
-          'limit': 30,
+          'limit': _limit,
         },
       ).then((response) {
         if (response.statusCode == 200) {
           var data = json.decode(response.data);
           if (data.length > 0) {
             setState(() {
+              if (_page == 1 && data.length < _limit) {
+                _isLastPage = true;
+              }
               _list.addAll(data);
               _page++;
             });
