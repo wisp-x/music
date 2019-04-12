@@ -67,13 +67,6 @@ class _ItemsPageState extends State<ItemsPage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        /* leading: CupertinoButton(
-          padding: EdgeInsets.all(0.0),
-          child: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ), */
         middle: const Text("搜索列表"),
       ),
       child: ListView.separated(
@@ -116,7 +109,7 @@ class _ItemsPageState extends State<ItemsPage> {
         ),
         trailing: Text('${_list[index]['artist'][0]}'),
         onTap: () async {
-          await Util.openPage(context, Player());
+          await Util.openPage(context, Player(detail: _list[index]));
         },
       );
     }

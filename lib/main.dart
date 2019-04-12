@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context) {
                 return CupertinoAlertDialog(
                   title: const Text('关于本软件'),
-                  content: const Text('动词打次动~\t动词打次动~\t动词打次动~\t动词打次动~\t动词打次动~\t动词打次动~\t'),
+                  content: const Text('动词打次动~\r\t动词打次动~\r\t动词打次动~\r\t动词打次动~\r\t动词打次动~\r\t动词打次动~\r\t'),
                   actions: <Widget>[
                     CupertinoDialogAction(
                       child: const Text('知道了'),
