@@ -229,7 +229,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
   }
 
   void _showDialog(BuildContext context) async {
-    showCupertinoModalPopup<int>(
+    await showCupertinoModalPopup<int>(
       context: context,
       builder: (context) {
         return CupertinoActionSheet(
