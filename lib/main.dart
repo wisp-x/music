@@ -9,8 +9,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Music',
-      home: MyHomePage(title: 'Music'),
+      title: 'Poly Music',
+      home: MyHomePage(title: 'Poly Music'),
       navigatorObservers: <NavigatorObserver>[
         CupertinoSwipeBackObserver(),
       ],
@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: const Text("Music"),
+        middle: const Text("Poly Music"),
         trailing: CupertinoButton(
           padding: EdgeInsets.all(0.0),
           child: const Text('关于'),
