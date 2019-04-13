@@ -27,9 +27,6 @@ dependencies:
   # https://pub.dartlang.org/packages/audioplayers
   audioplayers: ^0.10.1
 
-  # https://pub.flutter-io.cn/packages/image_picker_saver
-  image_picker_saver: ^0.1.0
-
   # https://pub.dartlang.org/packages/dio
   dio: ^2.1.2
 
