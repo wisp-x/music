@@ -209,7 +209,26 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
     }
   }
 
-  void _showDialog(BuildContext context) {
+  _showMsgAlertDialog(BuildContext context, {String msg}) async {
+    await showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          content: Text(msg),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: const Text('好的'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showDialog(BuildContext context) async {
     showCupertinoModalPopup<int>(
       context: context,
       builder: (context) {
@@ -227,6 +246,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
               onPressed: () {
                 Util.copyToClipboard(widget.detail['id'].toString());
                 Navigator.pop(context);
+                _showMsgAlertDialog(context, msg: '复制成功');
               },
             ),
             CupertinoActionSheetAction(
@@ -234,6 +254,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
               onPressed: () {
                 Util.copyToClipboard(widget.detail['name'].toString());
                 Navigator.pop(context);
+                _showMsgAlertDialog(context, msg: '复制成功');
               },
             ),
             CupertinoActionSheetAction(
@@ -241,6 +262,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
               onPressed: () {
                 Util.copyToClipboard(widget.detail['artist'][0].toString());
                 Navigator.pop(context);
+                _showMsgAlertDialog(context, msg: '复制成功');
               },
             ),
             CupertinoActionSheetAction(
@@ -248,12 +270,7 @@ class _MyPlayerPageState extends State<MyPlayerPage> {
               onPressed: () {
                 Util.copyToClipboard(_musicResourcesUrl.toString());
                 Navigator.pop(context);
-              },
-            ),
-            CupertinoActionSheetAction(
-              child: Text('保存歌曲图片'),
-              onPressed: () {
-                Navigator.pop(context);
+                _showMsgAlertDialog(context, msg: '复制成功');
               },
             ),
           ],
