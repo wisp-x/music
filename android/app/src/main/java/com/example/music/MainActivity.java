@@ -1,4 +1,4 @@
-package com.example.music;
+package cn.wispx.music;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
