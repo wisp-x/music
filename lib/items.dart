@@ -152,6 +152,24 @@ class _ItemsPageState extends State<ItemsPage> {
           }
         }
       });
-    } catch (e) {}
+    } catch (e) {
+      await showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('发生错误'),
+            content: Text('资源获取失败'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: const Text('好的'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
