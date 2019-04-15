@@ -1,16 +1,14 @@
-# music
+# Poly Music
 
-A new Flutter project.
+使用Flutter开发的音乐搜索器
 
-## Getting Started
+## 支持资源列表
 
-This project is a starting point for a Flutter application.
+- 网易云音乐
+- QQ音乐
+- 虾米音乐
+- 酷狗音乐
+- 百度音乐
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## License
+- [MIT](https://github.com/wisp-x/music/blob/master/LICENSE)
