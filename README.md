@@ -11,11 +11,7 @@
 - 百度音乐
 
 ## 截图
-<center>
-<img width="30%" src="./assets/sample/1.png">
-<img width="30%" src="./assets/sample/2.png">
-<img width="30%" src="./assets/sample/3.png">
-</center>
+![sample](./assets/sample/sample.jpg)
 
 ## License
 - [MIT](https://github.com/wisp-x/music/blob/master/LICENSE)
