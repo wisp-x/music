@@ -13,5 +13,8 @@
 ## 截图
 ![sample](./assets/sample/sample.jpg)
 
+## 下载体验
+- [Android](https://github.com/wisp-x/music/raw/master/assets/build/PolyMusic.apk)
+
 ## License
 - [MIT](https://github.com/wisp-x/music/blob/master/LICENSE)
